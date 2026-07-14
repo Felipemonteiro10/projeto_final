@@ -17,5 +17,6 @@ def remover(nome):
         if gasto["nome"] == nome:
             gastos.remove(gasto)
             break
+        
 def quanto_tenho():
     return total()  

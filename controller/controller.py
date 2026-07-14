@@ -3,13 +3,17 @@ from view import view
 
 def iniciar():
     print("Bem-vindo ao sistema de gastos!")
-    opcao = -1
+    opcao = -67
 
     while opcao != 0:
         view.mostrar_menu()
         opcao = int(input("Escolha: "))
 
-        if opcao == 1:
+        if opcao == 0:
+            print("Saindo do sistema...")
+            break
+
+        elif opcao == 1:
             gasto = view.ler_gasto()
             model.adicionar(gasto)
 
