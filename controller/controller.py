@@ -1,0 +1,31 @@
+from model import model
+from view import view
+
+def iniciar():
+    print("Bem-vindo ao sistema de gastos!")
+    opcao = -1
+
+    while opcao != 0:
+        view.mostrar_menu()
+        opcao = int(input("Escolha: "))
+
+        if opcao == 1:
+            gasto = view.ler_gasto()
+            model.adicionar(gasto)
+
+        elif opcao == 2:
+            view.mostrar_gastos(model.listar())
+
+        elif opcao == 3:
+            print("Total:", model.total())
+
+        elif opcao == 4:
+            nome = view.rem_nome()
+            model.remover(nome)
+
+        elif opcao == 5:
+            valor = view.oq_tenho()
+            print(f"Sobrou:", {valor-model.total()})
+
+        else:
+            print("Não tem essa opção")
