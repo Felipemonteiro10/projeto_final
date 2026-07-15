@@ -1,39 +1,34 @@
 from model import model
 from view import view
+import streamlit as st
+
 
 def iniciar():
-    print("Bem-vindo ao sistema de gastos!")
+    st.write("Bem-vindo ao sistema de gastos!")
     opcao = -67
 
     while opcao != 0:
-        view.most_menu()
-        opcao = int(input("Escolha: "))
 
-        if opcao == 0:
-            print("Saindo do sistema...")
+        if st.button("Sair"):
+            st.session_state.tela = "sair"
             break
 
-        elif opcao == 1:
-            gasto = view.ler_gasto()
-            model.add(gasto)
+        elif st.button("Inserir usuário"):
+            st.session_state.tela = "inserir"
+        st.rerun()
 
-        elif opcao == 2:
-            view.most_gastos(model.list())
+        if st.button("Todos usuário"):
+            st.session_state.tela = "Ver todos"
+        st.rerun()
 
-        elif opcao == 3:
-            print("Total:", model.total())
+        if st.button("Listar usuários"):
+            st.session_state.tela = "listar"
+        st.rerun()
 
-        elif opcao == 4:
-            nome = view.rem_nome()
-            model.remover(nome)
+        if st.button("Remover usuário"):
+            st.session_state.tela = "remover"
+        st.rerun()
 
-        elif opcao == 5:
-            valor = view.oq_tenho()
-            Sobrou= valor-model.total()
-            if Sobrou > 0:
-                print(f"Você ainda tem R$ {Sobrou}")
-            else:
-                print(f"Você está devendo R$ {Sobrou}")
-
-        else:
-            print("Não tem essa opção")
+        if st.button("Quanto tenho?"):
+            st.session_state.tela = "quanto tenho"
+        st.rerun()
