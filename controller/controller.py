@@ -29,7 +29,11 @@ def iniciar():
 
         elif opcao == 5:
             valor = view.oq_tenho()
-            print(f"Sobrou:", {valor-model.total()})
+            Sobrou=valor-model.total()
+            if Sobrou>0:
+                print(f"Você ainda tem R$ {Sobrou}")
+            else:
+                print(f"Você está devendo R$ {Sobrou}")
 
         else:
             print("Não tem essa opção")
