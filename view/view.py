@@ -1,4 +1,4 @@
-def mostrar_menu():
+def most_menu():
     print("1 - Adicionar gasto")
     print("2 - Listar gastos")
     print("3 - Ver total")
@@ -21,7 +21,7 @@ def ler_gasto():
         "categoria": categoria
     }
 
-def mostrar_gastos(lista):
+def most_gastos(lista):
     for gasto in lista:
         print(gasto)
 

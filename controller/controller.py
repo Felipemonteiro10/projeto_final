@@ -6,7 +6,7 @@ def iniciar():
     opcao = -67
 
     while opcao != 0:
-        view.mostrar_menu()
+        view.most_menu()
         opcao = int(input("Escolha: "))
 
         if opcao == 0:
@@ -15,10 +15,10 @@ def iniciar():
 
         elif opcao == 1:
             gasto = view.ler_gasto()
-            model.adicionar(gasto)
+            model.add(gasto)
 
         elif opcao == 2:
-            view.mostrar_gastos(model.listar())
+            view.most_gastos(model.list())
 
         elif opcao == 3:
             print("Total:", model.total())
@@ -29,8 +29,8 @@ def iniciar():
 
         elif opcao == 5:
             valor = view.oq_tenho()
-            Sobrou=valor-model.total()
-            if Sobrou>0:
+            Sobrou= valor-model.total()
+            if Sobrou > 0:
                 print(f"Você ainda tem R$ {Sobrou}")
             else:
                 print(f"Você está devendo R$ {Sobrou}")

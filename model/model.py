@@ -1,9 +1,9 @@
 gastos = []
 
-def adicionar(gasto):
+def add(gasto):
     gastos.append(gasto)
 
-def listar():
+def list():
     return gastos
 
 def total():
