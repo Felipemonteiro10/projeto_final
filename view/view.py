@@ -2,18 +2,18 @@ import streamlit as st
 
 def most_menu():
     st.title("Menu principal")
-    st.header("Escolha uma opção")
 
-    st.write("1 - Adicionar gasto")
-    st.write("2 - Listar gastos")
-    st.write("3 - Ver total")
-    st.write("4 - Remover gasto")
-    st.write("5 - Quanto tenho?")
-    st.write("0 - Sair")
+    opcao = st.selectbox("Escolha uma opção:", 
+    ["Adicionar gasto",
+    "Listar gastos",
+    "Ver total",
+    "Remover gasto", 
+    "Quanto tenho?"])
+    return opcao
 
 def oq_tenho():
     st.write("Quanto você tem na carteira?")
-    return float(st.number_input("Digite o valor: "))
+    return st.number_input("Digite o valor: ")
 
 def ler_gasto():
 
@@ -27,10 +27,9 @@ def ler_gasto():
         "categoria": categoria
     }
 
-def most_gastos(lista):
-    for gasto in lista:
-        st.write(gasto)
-
 def rem_nome():
     nome = st.text_input("Digite o nome do gasto a ser removido: ")
     return nome
+
+def most_gastos(lista):
+    st.table(lista)

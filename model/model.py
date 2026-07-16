@@ -3,7 +3,7 @@ gastos = []
 def add(gasto):
     gastos.append(gasto)
 
-def list():
+def listar():
     return gastos
 
 def total():
@@ -16,7 +16,8 @@ def remover(nome):
     for gasto in gastos:
         if gasto["nome"] == nome:
             gastos.remove(gasto)
-            break
-        
-def quanto_tenho():
-    return total()  
+            return True
+    return False
+
+def quanto_tenho(valor):
+    return valor - total()  

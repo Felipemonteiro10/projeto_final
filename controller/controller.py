@@ -4,31 +4,62 @@ import streamlit as st
 
 
 def iniciar():
-    st.write("Bem-vindo ao sistema de gastos!")
-    opcao = -67
+    if "tela" not in st.session_state:
+        st.session_state.tela = "menu"
 
-    while opcao != 0:
+    if st.session_state.tela == "menu": 
+        opcao = view.most_menu()
 
-        if st.button("Sair"):
-            st.session_state.tela = "sair"
-            break
+        if st.button("Acessar"):
+            st.session_state.tela = opcao
+            st.rerun()
+    elif st.session_state.tela == "Adicionar gasto":
+        gasto = view.ler_gasto()
 
-        elif st.button("Inserir usuário"):
-            st.session_state.tela = "inserir"
-        st.rerun()
+        if st.button("Confirmar"):
+            model.add(gasto)
+            st.success("Adicionado com sucesso!")
+        
+        if st.button("Voltar"):
+            st.session_state.tela = "menu"
+            st.rerun()
 
-        if st.button("Todos usuário"):
-            st.session_state.tela = "Ver todos"
-        st.rerun()
+    elif st.session_state.tela == "Listar gastos":
+        gastos = model.listar()
+        view.most_gastos(gastos)
 
-        if st.button("Listar usuários"):
-            st.session_state.tela = "listar"
-        st.rerun()
+        if st.button("Voltar"):
+            st.session_state.tela = "menu"
+            st.rerun()
 
-        if st.button("Remover usuário"):
-            st.session_state.tela = "remover"
-        st.rerun()
+    elif st.session_state.tela == "Ver total":
+        total = model.total()
+        st.write(f"Total de gastos: R$ {total}")
 
-        if st.button("Quanto tenho?"):
-            st.session_state.tela = "quanto tenho"
-        st.rerun()
+        if st.button("Voltar"):
+            st.session_state.tela = "menu"
+            st.rerun()
+
+    if st.session_state.tela == "Remover gasto":
+        nome = view.rem_nome()
+
+        if st.button("Remover"):
+            if model.remover(nome):
+                st.success("Removido com sucesso!")
+            else:
+                st.error("Gasto não encontrado.")
+
+        if st.button("Voltar"):
+            st.session_state.tela = "menu"
+            st.rerun()
+
+    if st.session_state.tela == "Quanto tenho?":
+        valor = view.oq_tenho()
+
+        if st.button("Calcular"):
+            saldo = model.quanto_tenho(valor)
+            st.write(f"Você tem R$ {saldo} na carteira.")
+
+        if st.button("Voltar"):
+            st.session_state.tela = "menu"
+            st.rerun()
