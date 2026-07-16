@@ -1,7 +1,8 @@
 import streamlit as st
 
 def most_menu():
-    st.title("Menu principal")
+    st.title("Controle de Gastos")
+    st.write("Menu principal")
 
     opcao = st.selectbox("Escolha uma opção:", 
     ["Adicionar gasto",
